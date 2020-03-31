@@ -7,7 +7,7 @@ import seaborn as sb
 from openpyxl import Workbook
 from datetime import datetime
 import seaborn as sns
-
+from matplotlib.pyplot import figure
 ##ML Zone ##
 from sklearn.ensemble import RandomForestRegressor
 from sklearn import svm
@@ -22,11 +22,24 @@ from sklearn.neighbors import KNeighborsClassifier
 from sklearn.metrics import classification_report
 from sklearn.model_selection import KFold,cross_val_score
 
-data = pd.read_excel (r'C:\Users\OhoMindZa\Documents\jan-pro\clean\march\testdata_badgood.xlsx') 
+
+
+data = pd.read_excel (r'C:\Users\OhoMindZa\Documents\jan-pro\part-ml\dlspot-code\data-file\setdate.xlsx', sheet_name='Alldata') 
+# data = pd.read_excel (r'C:\Users\OhoMindZa\Documents\jan-pro\clean\march\testdata_badgood.xlsx') 
 # data_9 = pd.read_excel (r'C:\Users\OhoMindZa\Documents\jan-pro\clean\data_allday.xlsx','9-02-2020') 
-data.to_csv (r'C:\Users\OhoMindZa\Documents\jan-pro\clean\march\data_badgod_new.csv', index = None, header=True)
+data.to_csv (r'C:\Users\OhoMindZa\Documents\jan-pro\part-ml\dlspot-code\data-file\setdate_new.csv', index = None, header=True)
 
 
+# df_filter =pd.DataFrame(data, columns= ['Round'	,'Date:time',	'Temperature'	,'Pressure'	,'Humidity'	,'Altitude',	'Vis',	'IR',	'UVindex',	'Ambient(*C)',	'Object(*C)',	'Ambient(*F)',	'Object(*F)',	'CO2Serial(ppm)',	'CO2Analog(ppm)',	'CO2PWM(ppm)',	'isGood',	'Xbar_Humidity',
+# 	'Xbar_Altitude',	'Xbar_Vis',	'Xbar_IR',	'Xbar_UVindex',	'Xbar_Ambient(*C)',	'Xbar_Object(*C)',	
+#     'Xbar_Ambient(*F)',	'Xbar_Object(*F)',	'Xbar_co2analog',	'SD_Humidity',	'SD_Altitude',	'SD_Vis',	
+#     'SD_IR',	'SD_UVindex',	'SD_Ambient(*C)',	'SD_Object(*C)',	'SD_Ambient(*F)',	'SD_Object(*F)',	
+#     'SD_co2analog',	'Mode_Humidity'	,'Mode_Vis'	,'Mode_IR'	,'Mode_Ambient(*C)',	'Mode_Object(*C)',	
+#     'Mode_Ambient(*F)',	'Mode_Object(*F)',	'Mode_co2analog'])
+
+df_filter = pd.DataFrame(data, columns= ['Temperature'	,'Humidity'	,'Object(*C)','CO2Analog(ppm)',
+                        'CO2PWM(ppm)',	'isGood',	'Xbar_Humidity', 'Xbar_co2analog',	'SD_Humidity',
+                        'SD_co2analog',	'Mode_Humidity'	,	'Mode_co2analog'])
 
 df = pd.DataFrame(data, columns= ['Humidity',	'UVindex', 'Temperature',	'Object(*C)', 'CO2PWM(ppm)', 'CO2Analog(ppm)','isGood' ])
 df = df.fillna(0) #ดัก missing value ถ้าเจอ เติม 0
@@ -35,15 +48,29 @@ df.loc[df['isGood'] < 1, 'labeled'] = '0'
 df.loc[df['isGood'] >= 1, 'labeled'] = '1' 
 
 df = df.dropna(axis=0)
+############################################
+
+df_filter.loc[df_filter['isGood'] < 1, 'labeled'] = '0' 
+df_filter.loc[df_filter['isGood'] >= 1, 'labeled'] = '1' 
+
+
 target=df.labeled
+target_filter =df_filter.labeled
+
+
+df_filter = df_filter.dropna(axis=0)  #case missing value drop ทิ้งเลย
+
+
 
 inputs=df.drop('isGood', axis='columns')
+input_all = df_filter.drop('isGood', axis='columns')
 
-# print(inputs)
+# print(input_all)
 
-
-# test = df.head()
-
+# print(df_filter)
+# print(df_filter.shape)
+# # test = df.head()
+# df['some_column'].plot(figsize=(10, 5))
 
 # print(df.class_day)
 
@@ -51,6 +78,12 @@ inputs=df.drop('isGood', axis='columns')
 tmp_obj = df.get('Object(*C)')
 co_analog_all = df.get('CO2Analog(ppm)')
 co_pwm_all = df.get('CO2PWM(ppm)')
+
+xbar_hu = df_filter.get('Xbar_Humidity')
+
+# print(xbar_hu)
+
+# print(xbar_hu.shape)
 
 
 
@@ -71,6 +104,9 @@ input_norm = df_n.drop('spe', axis='columns')
 # print(input_norm)
 
 
+input_all.drop('labeled', axis='columns',inplace=True)   #drop ตัวที่ไม่ใช้ออกไปอีก
+
+print(input_all)
 
 
 inputs.drop('labeled', axis='columns',inplace=True)   #drop ตัวที่ไม่ใช้ออกไปอีก
@@ -103,7 +139,7 @@ inputs2.drop('labeled', axis='columns',inplace=True)   #drop ตัวที่�
 
 # # print("---------------------1---------------------")
 
-# # print(inputs)
+# print(inputs)
 
 
 
@@ -111,10 +147,11 @@ inputs2.drop('labeled', axis='columns',inplace=True)   #drop ตัวที่�
 
 # # ############ close tag after set file #############
 
-writer = pd.ExcelWriter('output_goodbadv1.xlsx')
+writer = pd.ExcelWriter('output_goodbadv2.xlsx')
 target.to_excel(writer,'1isgod0isbad')
 inputs.to_excel(writer,'feature_data')
 inputs2.to_excel(writer,'featuredata_without_tmp')
+input_norm.to_excel(writer,'feature_withnorm')
 writer.save()
 
 
@@ -318,7 +355,7 @@ print('')
 # print('')
 # print('ค่า Accuracy โดยnorm minmax :',acc_minmax)
 # print('')
-print('ค่า Accuracy with GaussianNB โดยที่มี tmp อยู่ :',acc_ori)
+print('ค่า Accuracy with GaussianNB โดยที่มีค่า temp อยู่ :',acc_ori)
 
 print('')
 print('ค่า Accuracy with GaussianNB(& norm) :',acc_norm)
