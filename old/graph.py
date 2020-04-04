@@ -108,52 +108,70 @@ plt.plot(xla_good, xbarco_analog_good ,label='Xbar_Goodtree')
 plt.title('กราฟแสดงXbarค่าco2analog ',fontname='Tahoma',fontsize='13') 
 plt.ylabel('Co2analog(ppm)',fontname='Tahoma',fontsize='12')
 plt.xlabel('Round ',fontname='Tahoma',fontsize='12')
-plt.legend(framealpha=1, frameon=True);
+plt.legend(framealpha=1, frameon=True)
 plt.savefig('./pic/bad/graph_XD_badandgood.png')
 
 
 
-plt.figure()  #bad with Xbar
-plt.plot(xla, xbarco_analog_bad )
-plt.title('กราฟแสดงXbar  (ต้นป่วย) ',fontname='Tahoma',fontsize='13') 
-plt.ylabel('Co2analog(ppm)',fontname='Tahoma',fontsize='12')
-plt.xlabel('Round ',fontname='Tahoma',fontsize='12')
-plt.savefig('./pic/bad/graph_XD_bad.png')
+# plt.figure()  #bad with Xbar
+# plt.plot(xla, xbarco_analog_bad )
+# plt.title('กราฟแสดงXbar  (ต้นป่วย) ',fontname='Tahoma',fontsize='13') 
+# plt.ylabel('Co2analog(ppm)',fontname='Tahoma',fontsize='12')
+# plt.xlabel('Round ',fontname='Tahoma',fontsize='12')
+# plt.savefig('./pic/bad/graph_XD_bad.png')
 
-plt.figure()  #bad with SD
-plt.plot(xla, sdco_analog_bad )
-plt.title('กราฟแสดงSD (ต้นป่วย) ',fontname='Tahoma',fontsize='13') 
+plt.figure()  #bad and good with SD
+plt.plot(xla, sdco_analog_bad ,label='SD_badtree')
+plt.plot(xla_good, sdco_analog_good,label='SD_goodtree')
+plt.title('กราฟแสดงSD',fontname='Tahoma',fontsize='13') 
 plt.ylabel('co2analog ',fontname='Tahoma',fontsize='12')
 plt.xlabel('Round ',fontname='Tahoma',fontsize='12')
-plt.savefig('./pic/bad/graph_SD_bad.png')
+plt.legend(framealpha=1, frameon=True)
+plt.savefig('./pic/bad/graph_SD_badandgood.png')
 
-plt.figure()  #bad with mode
-plt.plot(xla, modeco_analog_bad )
-plt.title('กราฟแสดงMode (ต้นป่วย) ',fontname='Tahoma',fontsize='13') 
+# plt.figure()  #bad with SD
+# plt.plot(xla, sdco_analog_bad )
+# plt.title('กราฟแสดงSD (ต้นป่วย) ',fontname='Tahoma',fontsize='13') 
+# plt.ylabel('co2analog ',fontname='Tahoma',fontsize='12')
+# plt.xlabel('Round ',fontname='Tahoma',fontsize='12')
+# plt.savefig('./pic/bad/graph_SD_bad.png')
+
+plt.figure()  #god and bad with mode
+plt.plot(xla, modeco_analog_bad,label='Mode_badtree' )
+plt.plot(xla_good, modeco_analog_good,label='Mode_goodtree' )
+plt.title('กราฟแสดงMode ',fontname='Tahoma',fontsize='13') 
 plt.ylabel('co2analog (ppm)',fontname='Tahoma',fontsize='12')
 plt.xlabel('Round ',fontname='Tahoma',fontsize='12')
-plt.savefig('./pic/bad/graph_Mode_bad.png')
+plt.legend(framealpha=1, frameon=True)
+plt.savefig('./pic/bad/graph_Mode_badandgood.png')
 
-plt.figure()  #good with Xbar
-plt.plot(xla_good, xbarco_analog_good )
-plt.title('กราฟแสดงXbar  (ต้นดี) ',fontname='Tahoma',fontsize='13') 
-plt.ylabel('Co2analog(ppm)',fontname='Tahoma',fontsize='12')
-plt.xlabel('Round ',fontname='Tahoma',fontsize='12')
-plt.savefig('./pic/good/graph_XD_good.png')
+# plt.figure()  #bad with mode
+# plt.plot(xla, modeco_analog_bad )
+# plt.title('กราฟแสดงMode (ต้นป่วย) ',fontname='Tahoma',fontsize='13') 
+# plt.ylabel('co2analog (ppm)',fontname='Tahoma',fontsize='12')
+# plt.xlabel('Round ',fontname='Tahoma',fontsize='12')
+# plt.savefig('./pic/bad/graph_Mode_bad.png')
 
-plt.figure()  #good with SD
-plt.plot(xla_good, sdco_analog_good )
-plt.title('กราฟแสดงSD (ต้นดี) ',fontname='Tahoma',fontsize='13') 
-plt.ylabel('co2analog ',fontname='Tahoma',fontsize='12')
-plt.xlabel('Round ',fontname='Tahoma',fontsize='12')
-plt.savefig('./pic/good/graph_SD_good.png')
+# plt.figure()  #good with Xbar
+# plt.plot(xla_good, xbarco_analog_good )
+# plt.title('กราฟแสดงXbar  (ต้นดี) ',fontname='Tahoma',fontsize='13') 
+# plt.ylabel('Co2analog(ppm)',fontname='Tahoma',fontsize='12')
+# plt.xlabel('Round ',fontname='Tahoma',fontsize='12')
+# plt.savefig('./pic/good/graph_XD_good.png')
 
-plt.figure()  #good with mode
-plt.plot(xla_good, modeco_analog_good )
-plt.title('กราฟแสดงMode (ต้นดี) ',fontname='Tahoma',fontsize='13') 
-plt.ylabel('co2analog (ppm)',fontname='Tahoma',fontsize='12')
-plt.xlabel('Round ',fontname='Tahoma',fontsize='12')
-plt.savefig('./pic/good/graph_Mode_good.png')
+# plt.figure()  #good with SD
+# plt.plot(xla_good, sdco_analog_good )
+# plt.title('กราฟแสดงSD (ต้นดี) ',fontname='Tahoma',fontsize='13') 
+# plt.ylabel('co2analog ',fontname='Tahoma',fontsize='12')
+# plt.xlabel('Round ',fontname='Tahoma',fontsize='12')
+# plt.savefig('./pic/good/graph_SD_good.png')
+
+# plt.figure()  #good with mode
+# plt.plot(xla_good, modeco_analog_good )
+# plt.title('กราฟแสดงMode (ต้นดี) ',fontname='Tahoma',fontsize='13') 
+# plt.ylabel('co2analog (ppm)',fontname='Tahoma',fontsize='12')
+# plt.xlabel('Round ',fontname='Tahoma',fontsize='12')
+# plt.savefig('./pic/good/graph_Mode_good.png')
 
 plt.figure(1)  #bad with tmp
 plt.plot(start_bad, tmp_bad )

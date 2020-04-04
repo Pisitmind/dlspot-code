@@ -55,15 +55,16 @@ df_filter.loc[df_filter['isGood'] >= 1, 'labeled'] = '1'
 
 
 target=df.labeled
-target_filter =df_filter.labeled
 
 
 df_filter = df_filter.dropna(axis=0)  #case missing value drop ทิ้งเลย
 
+target_filter =df_filter.labeled  #targetdata_new
+
 
 
 inputs=df.drop('isGood', axis='columns')
-input_all = df_filter.drop('isGood', axis='columns')
+input_all = df_filter.drop('isGood', axis='columns')  #featuredata_new
 
 # print(input_all)
 
@@ -104,12 +105,12 @@ input_norm = df_n.drop('spe', axis='columns')
 # print(input_norm)
 
 
-input_all.drop('labeled', axis='columns',inplace=True)   #drop ตัวที่ไม่ใช้ออกไปอีก
+input_all.drop('labeled', axis='columns',inplace=True)   #drop ของดาต้าใหม่
 
-print(input_all)
-print(input_all.shape)
-print(target_filter)
-print(target_filter.info)
+# print(input_all)
+
+# print(target_filter)
+
 
 
 inputs.drop('labeled', axis='columns',inplace=True)   #drop ตัวที่ไม่ใช้ออกไปอีก
@@ -158,82 +159,91 @@ inputs2.drop('labeled', axis='columns',inplace=True)   #drop ตัวที่�
 # writer.save()
 
 
+# writer = pd.ExcelWriter('output_alldata.xlsx')
+# target_filter.to_excel(writer,'1isgod0isbad')
+# input_all.to_excel(writer,'feature')
+# inputs2.to_excel(writer,'featuredata_without_tmp')
+# # input_norm.to_excel(writer,'feature_withnorm')
+# writer.save()
 
+
+# standard
+standardized_X = preprocessing.scale(inputs)
 
 # # ###################################### Prediction Zone #######################################
 
 
 
 # # X_train_scale, X_test_scale, Y_train_scale, Y_test_scale = train_test_split(x_scaled,target,test_size=0.2,random_state=0) #all  scale and have tmp
-# # X_train_std, X_test_std, Y_train_std, Y_test_std = train_test_split(standardized_X,target,test_size=0.2,random_state=0) #all  standardized and have tmp
-# # X_train_mm, X_test_mm, Y_train_mm, Y_test_mm =train_test_split(X_train_minmax,target,test_size=0.2,random_state=0) #all  minmax and have tmp
+X_train_std, X_test_std, Y_train_std, Y_test_std = train_test_split(standardized_X,target,test_size=0.2,random_state=0) #all  standardized and have tmp
+# X_train_mm, X_test_mm, Y_train_mm, Y_test_mm =train_test_split(X_train_minmax,target,test_size=0.2,random_state=0) #all  minmax and have tmp
 
 
-# X_train_norm, X_test_norm, Y_train_norm, Y_test_norm = train_test_split(input_all,target_filter,test_size=0.2,random_state=0) #all  norm and have tmp
-# X_train_o, X_test_o, Y_train_o, Y_test_o =train_test_split(inputs,target,test_size=0.2,random_state=0) #all with tmp
+X_train_norm, X_test_norm, Y_train_norm, Y_test_norm = train_test_split(input_all,target_filter,test_size=0.2,random_state=0) #all  norm and have tmp
+X_train_o, X_test_o, Y_train_o, Y_test_o =train_test_split(inputs,target,test_size=0.2,random_state=0) #all with tmp
 
 
-# X_train1, X_test1, Y_train1, Y_test1 =train_test_split(inputs2,target,test_size=0.2,random_state=0) # all with out tmp
+X_train1, X_test1, Y_train1, Y_test1 =train_test_split(inputs2,target,test_size=0.2,random_state=0) # all with out tmp
 
 
 # #data preprocess with scale
 # # print("- test min max scaler -")
 # # print(X_train_minmax)
 
-# ########## SVM method ###############
-# clf = svm.SVR()
-# clf.fit(input_all, target_filter)
-# SVR()
-# svmmodel = clf.predict(X_test_norm)
-# svmscore = clf.score(X_train_norm,Y_train_norm)
-# # print("SVM score: ",svmscore)
+########## SVM method ###############
+clf = svm.SVR()
+clf.fit(X_train_norm, Y_train_norm)
+SVR()
+svmmodel = clf.predict(X_test_norm)
+svmscore = clf.score(X_train_norm,Y_train_norm)
+# print("SVM score: ",svmscore)
 
-# # #############Gau with scale #############
-# # model_scale= GaussianNB()
-# # model_scale.fit(X_train_std,Y_train_std)
-# # y_model = model_scale.predict(X_test_std)
+#############Gau with scale #############
+model_scale= GaussianNB()
+model_scale.fit(X_train_std,Y_train_std)
+y_model = model_scale.predict(X_test_std)
 
-# # #############Gau scale minmax################
-# # model_minmax= GaussianNB()
-# # model_minmax.fit(X_train_mm,Y_train_mm)
-# # y_model_minmax = model_minmax.predict(X_test_mm)
+# #############Gau scale minmax################
+# model_minmax= GaussianNB()
+# model_minmax.fit(X_train_mm,Y_train_mm)
+# y_model_minmax = model_minmax.predict(X_test_mm)
 
-# # #############Gau Ori###########
-# model_ori= GaussianNB()
-# model_ori.fit(X_train_o,Y_train_o)
-# y_model_o = model_ori.predict(X_test_o)
-# # ###########Knn ##########
-# modelknn = KNeighborsClassifier(n_neighbors=5)
-# modelknn.fit(X_train_o,Y_train_o)
-# knn_score = modelknn.score(X_train_o,Y_train_o)
-# answer = modelknn.predict(X_test_o)
-# # print("Knn score : ", knn_score)
-# #############Gau wotmp#############
-# model1= GaussianNB()
-# model1.fit(X_train1,Y_train1)
-# y_model1 = model1.predict(X_test1)
-# #############Gau norm#############
-# model_norm= GaussianNB()
-# model_norm.fit(X_train_norm,Y_train_norm)
-# y_model_norm = model_norm.predict(X_test_norm)
+# #############Gau Ori###########
+model_ori= GaussianNB()
+model_ori.fit(X_train_o,Y_train_o)
+y_model_o = model_ori.predict(X_test_o)
+# ###########Knn ##########
+modelknn = KNeighborsClassifier(n_neighbors=5)
+modelknn.fit(X_train_o,Y_train_o)
+knn_score = modelknn.score(X_train_o,Y_train_o)
+answer = modelknn.predict(X_test_o)
+# print("Knn score : ", knn_score)
+#############Gau wotmp#############
+model1= GaussianNB()
+model1.fit(X_train1,Y_train1)
+y_model1 = model1.predict(X_test1)
+#############Gau norm#############
+model_norm= GaussianNB()
+model_norm.fit(X_train_norm,Y_train_norm)
+y_model_norm = model_norm.predict(X_test_norm)
 
-# #############Logistic Regress ############# #เป็นวิธีการที่นิยมใช้เพื่อจำแนกประเภทข้อมูลหรือสิ่งของบางอย่างออกเป็นสองกลุ่ม
-# logistic_regression= LogisticRegression()
-# logistic_regression.fit(X_train_o,Y_train_o)
-# y_pred=logistic_regression.predict(X_test_o)
+#############Logistic Regress ############# #เป็นวิธีการที่นิยมใช้เพื่อจำแนกประเภทข้อมูลหรือสิ่งของบางอย่างออกเป็นสองกลุ่ม
+logistic_regression= LogisticRegression()
+logistic_regression.fit(X_train_o,Y_train_o)
+y_pred=logistic_regression.predict(X_test_o)
 
-# #############Logistic Regress with norm############# #เป็นวิธีการที่นิยมใช้เพื่อจำแนกประเภทข้อมูลหรือสิ่งของบางอย่างออกเป็นสองกลุ่ม แบบnorm
-# logistic_regression_norm= LogisticRegression()
-# logistic_regression_norm.fit(X_train_norm,Y_train_norm)
-# y_pred=logistic_regression_norm.predict(X_test_norm)
-
-
+#############Logistic Regress with norm############# #เป็นวิธีการที่นิยมใช้เพื่อจำแนกประเภทข้อมูลหรือสิ่งของบางอย่างออกเป็นสองกลุ่ม แบบnorm
+logistic_regression_norm= LogisticRegression()
+logistic_regression_norm.fit(X_train_norm,Y_train_norm)
+y_pred=logistic_regression_norm.predict(X_test_norm)
 
 
 
-# def get_score(model,xtrain, xtest, ytrain, ytest):  #function แสดงค่า acc ของ mddel 
-#     model.fit(xtrain,ytrain)
-#     return model.score(xtest, ytest)
+
+
+def get_score(model,xtrain, xtest, ytrain, ytest):  #function แสดงค่า acc ของ mddel 
+    model.fit(xtrain,ytrain)
+    return model.score(xtest, ytest)
 
 
 
@@ -311,24 +321,24 @@ inputs2.drop('labeled', axis='columns',inplace=True)   #drop ตัวที่�
 # # normalized_X = preprocessing.normalize(inputs)
 # # ############################## use def get score#############################
 
-# # acc_scale = get_score(model_scale, X_train_std, X_test_std, Y_train_std, Y_test_std ) #Gau
-# # acc_minmax = get_score(model_minmax,X_train_mm,X_test_mm,Y_train_mm,Y_test_mm) #Gau minmax
+acc_scale = get_score(model_scale, X_train_std, X_test_std, Y_train_std, Y_test_std ) #Gau
+# acc_minmax = get_score(model_minmax,X_train_mm,X_test_mm,Y_train_mm,Y_test_mm) #Gau minmax
 
-# acc_ori = get_score(model_ori, X_train_o, X_test_o, Y_train_o, Y_test_o ) #Gau ori
-# acc_norm = get_score(model_norm, X_train_norm, X_test_norm, Y_train_norm, Y_test_norm ) #Gau ori
+acc_ori = get_score(model_ori, X_train_o, X_test_o, Y_train_o, Y_test_o ) #Gau ori
+acc_norm = get_score(model_norm, X_train_norm, X_test_norm, Y_train_norm, Y_test_norm ) #Gau ori
 
-# acc_wotemp = get_score(model1, X_train1, X_test1, Y_train1, Y_test1 ) #Gau wo tmp
-# acc_svm = get_score(clf,X_train_o,X_test_o,Y_train_o,Y_test_o) #use SVM
-# acc_svm_norm = get_score(clf,X_train_norm,X_test_norm,Y_train_norm,Y_test_norm) #use SVM
-# acc_knn = get_score(modelknn,X_train_o,X_test_o,Y_train_o,Y_test_o) #use KNN
+acc_wotemp = get_score(model1, X_train1, X_test1, Y_train1, Y_test1 ) #Gau wo tmp
+acc_svm = get_score(clf,X_train_o,X_test_o,Y_train_o,Y_test_o) #use SVM
+acc_svm_norm = get_score(clf,X_train_norm,X_test_norm,Y_train_norm,Y_test_norm) #use SVM
+acc_knn = get_score(modelknn,X_train_o,X_test_o,Y_train_o,Y_test_o) #use KNN
 
-# acc_logistic = get_score(logistic_regression,X_train_o,X_test_o,Y_train_o,Y_test_o)
-# acc_logistic_norm = get_score(logistic_regression_norm,X_train_norm,X_test_norm,Y_train_norm,Y_test_norm)
+acc_logistic = get_score(logistic_regression,X_train_o,X_test_o,Y_train_o,Y_test_o)
+acc_logistic_norm = get_score(logistic_regression_norm,X_train_norm,X_test_norm,Y_train_norm,Y_test_norm)
 
-# # acc_notscale = get_score(model_or,X_train_o,X_test_o,Y_train_o,Y_test_o)
+# acc_notscale = get_score(model_or,X_train_o,X_test_o,Y_train_o,Y_test_o)
 
-# # print("inputs is :", inputs)
-# # print("Norm here :", normalized_X)
+# print("inputs is :", inputs)
+# print("Norm here :", normalized_X)
 
 # # kf = KFold(n_splits = 10, shuffle = True, random_state=200)
 
@@ -352,30 +362,30 @@ inputs2.drop('labeled', axis='columns',inplace=True)   #drop ตัวที่�
 
 # # ############################# Print ACC ############################
 
-# print('---------------Accuracy Report------------')
+print('---------------Accuracy Report------------')
+print('')
 # print('')
-# # print('')
-# # print('ค่า Accuracy โดยที่ scale :',acc_scale)
-# # print('')
-# # print('ค่า Accuracy โดยnorm minmax :',acc_minmax)
-# # print('')
-# print('ค่า Accuracy with GaussianNB โดยที่มีค่า temp อยู่ :',acc_ori)
+# print('ค่า Accuracy โดยที่ scale :',acc_scale)
+# print('')
+# print('ค่า Accuracy โดยnorm minmax :',acc_minmax)
+# print('')
+print('ค่า Accuracy with GaussianNB โดยที่มีค่า temp อยู่ :',acc_ori)
 
-# print('')
-# print('ค่า Accuracy with GaussianNB(& norm) :',acc_norm)
-# print('')
-# print('ค่า Accuracy with GaussianNB โดยที่ไม่มีปัจจัยภายนอก :',acc_wotemp)
-# print('')
-# print('ค่า Accuracy with SVM :',acc_svm)
-# print('')
-# print('ค่า Accuracy with SVM (&norm) :',acc_svm_norm)
-# print('')
-# print('ค่า Accuracy with KNN :',acc_knn)
-# print('')
-# print('ค่า Accuracy with logistic regress :',acc_logistic)
-# print('')
-# print('ค่า Accuracy with logistic regress(with norm) :',acc_logistic_norm)
-# print('')
+print('')
+print('ค่า Accuracy with GaussianNB(& norm) :',acc_norm)
+print('')
+print('ค่า Accuracy with GaussianNB โดยที่ไม่มีปัจจัยภายนอก :',acc_wotemp)
+print('')
+print('ค่า Accuracy with SVM :',acc_svm)
+print('')
+print('ค่า Accuracy with SVM (&norm) :',acc_svm_norm)
+print('')
+print('ค่า Accuracy with KNN :',acc_knn)
+print('')
+print('ค่า Accuracy with logistic regress :',acc_logistic)
+print('')
+print('ค่า Accuracy with logistic regress(with norm) :',acc_logistic_norm)
+print('')
 
 
 # # print('ค่า Accuracy โดยที่ไม่scale :',acc_notscale)
