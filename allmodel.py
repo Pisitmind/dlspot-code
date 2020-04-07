@@ -137,7 +137,7 @@ input_norm.drop('CO2PWM(ppm)', axis='columns',inplace=True)
 
 # writer = pd.ExcelWriter('outputold_136hr.xlsx')
 # target.to_excel(writer,'labeled_old')
-# target_filter_1hr.to_excel(writer,'labeled_1hr')
+# target_filter_1hr.to_excel(writer,'labeled_1hr')  
 # target_filter_3hr.to_excel(writer,'labeled_3hr')
 # target_filter_6hr.to_excel(writer,'labeled_6hr')
 # target_norm.to_excel(writer,'labeled_norm')
@@ -239,7 +239,7 @@ y_model_6 = gau_model_6.predict(X_test_6)
 
 
 
-# ###########Knn ##########
+# ###########Knn ########## ลองเพิ่มม-ลด paramiter ดูผลกระทบ
 modelknn = KNeighborsClassifier(n_neighbors=5)
 modelknn.fit(X_train_o,Y_train_o)
 knn_score = modelknn.score(X_train_o,Y_train_o)
