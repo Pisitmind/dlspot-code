@@ -179,6 +179,34 @@ X_train_6, X_test_6, Y_train_6, Y_test_6 =train_test_split(input_6hr,target_filt
 
 
 
+no_neighbors = np.arange(1, 9)
+train_accuracy = np.empty(len(no_neighbors))
+test_accuracy = np.empty(len(no_neighbors))
+
+for i, k in enumerate(no_neighbors):
+    # We instantiate the classifier
+    knn = KNeighborsClassifier(n_neighbors=k)
+    # Fit the classifier to the training data
+    knn.fit(X_train,y_train)
+    
+    # Compute accuracy on the training set
+    train_accuracy[i] = knn.score(X_train, y_train)
+
+    # Compute accuracy on the testing set
+    test_accuracy[i] = knn.score(X_test, y_test)
+
+# Visualization of k values vs accuracy
+
+plt.title('k-NN: Varying Number of Neighbors')
+plt.plot(no_neighbors, test_accuracy, label = 'Testing Accuracy')
+plt.plot(no_neighbors, train_accuracy, label = 'Training Accuracy')
+plt.legend()
+plt.xlabel('Number of Neighbors')
+plt.ylabel('Accuracy')
+plt.show()
+
+
+
 # # # #data preprocess with scale
 # # # # print("- test min max scaler -")
 # # # # print(X_train_minmax)
