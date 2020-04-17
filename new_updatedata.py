@@ -155,12 +155,12 @@ input_6hr = df_filter_6hr.drop('isGood', axis='columns') #6hrdata
 # target_filter_1hr.to_excel(writer,'labeled_1hr')  
 # target_filter_3hr.to_excel(writer,'labeled_3hr')
 # target_filter_6hr.to_excel(writer,'labeled_6hr')
-# target_norm.to_excel(writer,'labeled_norm')
+# # target_norm.to_excel(writer,'labeled_norm')
 # inputs.to_excel(writer,'feature_old')
 # input_1hr.to_excel(writer,'feature_1hr')
 # input_3hr.to_excel(writer,'feature_3hr')
 # input_6hr.to_excel(writer,'feature_6hr')
-# input_norm.to_excel(writer,'feature_norm')
+# # input_norm.to_excel(writer,'feature_norm')
 # writer.save()
 
 
