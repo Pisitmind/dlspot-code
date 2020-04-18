@@ -21,6 +21,8 @@ from sklearn.linear_model import LogisticRegression
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.metrics import classification_report
 from sklearn.model_selection import KFold,cross_val_score
+from sklearn import model_selection
+import pickle
 
 data =pd.read_excel (r'C:\Users\OhoMindZa\Documents\jan-pro\part-ml\dlspot-code\data-file\alldata_update.xlsx')
 data_1hr =pd.read_excel (r'C:\Users\OhoMindZa\Documents\jan-pro\part-ml\dlspot-code\data-file\alldata_update.xlsx', sheet_name='all1hr')
@@ -176,6 +178,22 @@ X_train_3, X_test_3, Y_train_3, Y_test_3 =train_test_split(input_3hr,target_filt
 X_train_6, X_test_6, Y_train_6, Y_test_6 =train_test_split(input_6hr,target_filter_6hr,test_size=0.2,random_state=0) #all with  xbar sd  6hr
 
 
+##########################################################################
+# # Fit the model on training set
+# model = LogisticRegression()
+# model.fit(X_train, Y_train)
+# # save the model to disk
+# filename = 'finalized_model.sav'
+# pickle.dump(model, open(filename, 'wb'))
+ 
+# # some time later...
+ 
+# # load the model from disk
+# loaded_model = pickle.load(open(filename, 'rb'))
+# result = loaded_model.score(X_test, Y_test)
+# print(result)
+
+##########################################################################
 
 
 
@@ -221,12 +239,18 @@ plt.show()
 ##################################################################################
 
 
-
+# model.fit(X_train, Y_train)
+# # save the model to disk
+# filename = 'finalized_model.sav'
+# pickle.dump(model, open(filename, 'wb'))
 
 
 # #############Gau Ori###########
 model_ori= GaussianNB()
 model_ori.fit(X_train_o,Y_train_o)
+model_gau_ori = 'model_gaussianNB_ori.sav'
+pickle.dump(model_ori, open(model_gau_ori,'wb'))
+
 y_model_o = model_ori.predict(X_test_o)
 
 # #############Gau norm#############
@@ -236,18 +260,34 @@ y_model_o = model_ori.predict(X_test_o)
 
 # # #############Gau new###########
 gau_model_1= GaussianNB()
-gau_model_1.fit(X_train_1 ,Y_train_1)
-y_model_1 = gau_model_1.predict(X_test_1)
+
+model_gau_1= GaussianNB()
+model_gau_1.fit(X_train_1,Y_train_1)
+model_gau_1h = 'model_gaussianNB_1.sav'
+pickle.dump(model_gau_1, open(model_gau_1h,'wb'))
+
+# gau_model_1.fit(X_train_1 ,Y_train_1)
+# y_model_1 = gau_model_1.predict(X_test_1)
 
 #############Gau 3hr###########
-gau_model_3= GaussianNB()
-gau_model_3.fit(X_train_3 ,Y_train_3)
-y_model_3 = gau_model_3.predict(X_test_3)
+gau_model_3 = GaussianNB()
+
+model_gau_3 = GaussianNB()
+model_gau_3.fit(X_train_3 ,Y_train_3)
+model_gau_3h = 'model_gaussianNB_3.sav'
+pickle.dump(model_gau_3, open(model_gau_3h,'wb'))
+
+# y_model_3 = gau_model_3.predict(X_test_3)
 
 # #############Gau 6hr###########
 gau_model_6 = GaussianNB()
-gau_model_6.fit(X_train_6 ,Y_train_6)
-y_model_6 = gau_model_6.predict(X_test_6)
+
+model_gau_6 = GaussianNB()
+model_gau_6.fit(X_train_6 ,Y_train_6)
+model_gau_6h = 'model_gaussianNB_6.sav'
+pickle.dump(model_gau_6, open(model_gau_6h, 'wb'))
+
+# y_model_6 = gau_model_6.predict(X_test_6)
 
 
 
@@ -265,6 +305,9 @@ modelknn_n10 = KNeighborsClassifier(n_neighbors=10)
 
 
 modelknn = KNeighborsClassifier(n_neighbors=3)
+modelknn.fit(X_train_o,Y_train_o)
+model_knn_ori = 'model_KNN_ori.sav'
+pickle.dump(modelknn, open(model_knn_ori,'wb'))
 # modelknn.fit(X_train_o,Y_train_o)
 # knn_score = modelknn.score(X_train_o,Y_train_o)
 # answer = modelknn.predict(X_test_o)
@@ -274,19 +317,31 @@ modelknn = KNeighborsClassifier(n_neighbors=3)
 # knn_score_norm = modelknn_norm.score(X_train_norm,Y_train_norm)
 # answer_norm = modelknn_norm.predict(X_test_norm)
 # # print("Knn score : ", knn_score)
-##########Knn 1hr ##########
+##########Knn 1hr ##########111
 modelknn_1 = KNeighborsClassifier(n_neighbors=3)
 modelknn_1.fit(X_train_1,Y_train_1)
+modelknn_1h = 'model_KNN_1h.sav'
+pickle.dump(modelknn_1,open(modelknn_1h,'wb'))
+
+
 knn_score_1 = modelknn_1.score(X_train_1,Y_train_1)
 answer_1 = modelknn_1.predict(X_test_1)
 # ##########Knn 3hr ##########
 modelknn_3 = KNeighborsClassifier(n_neighbors=3)
 modelknn_3.fit(X_train_3,Y_train_3)
+modelknn_3h = 'model_KNN_3h.sav'
+pickle.dump(modelknn_3,open(modelknn_3h,'wb'))
+
+
 knn_score_3 = modelknn_3.score(X_train_3,Y_train_3)
 answer_3 = modelknn_3.predict(X_test_3)
 ##########Knn 6hr ##########
 modelknn_6 = KNeighborsClassifier(n_neighbors=3)
 modelknn_6.fit(X_train_6,Y_train_6)
+modelknn_6h = 'model_KNN_6h.sav'
+pickle.dump(modelknn_6,open(modelknn_6h,'wb'))
+
+
 knn_score_6 = modelknn_6.score(X_train_6,Y_train_6)
 answer_6 = modelknn_6.predict(X_test_6)
 
@@ -299,11 +354,19 @@ Lo_test = LogisticRegression(C=1.0, class_weight=None, dual=False, fit_intercept
                    random_state=0, solver='saga', tol=0.0001, verbose=0,
                    warm_start=False)
 
-logistic_regression= LogisticRegression(max_iter=10000, solver='saga')
-logistic_regression_saga= LogisticRegression(max_iter=10000, solver='saga')
-logistic_regression_sag= LogisticRegression(max_iter=10000, solver='sag')
-logistic_regression_lbfgs= LogisticRegression(max_iter=10000, solver='lbfgs')
-logistic_regression_newton= LogisticRegression(max_iter=10000, solver='newton-cg')
+logistic_regression = LogisticRegression(max_iter=10000, solver='saga')
+logistic_regression_saga = LogisticRegression(max_iter=10000, solver='saga')
+logistic_regression_sag = LogisticRegression(max_iter=10000, solver='sag')
+logistic_regression_lbfgs = LogisticRegression(max_iter=10000, solver='lbfgs')
+logistic_regression_newton = LogisticRegression(max_iter=10000, solver='newton-cg')
+
+
+logistic_ori= LogisticRegression(max_iter=10000, solver='saga')
+logistic_ori.fit(X_train_o,Y_train_o)
+model_logis_ori = 'model_logistic_ori.sav'
+pickle.dump(logistic_ori, open(model_logis_ori,'wb'))
+
+
 # logistic_regression.fit(X_train_o,Y_train_o)
 # y_pred=logistic_regression.predict(X_test_o)
 
@@ -315,19 +378,35 @@ logistic_regression_newton= LogisticRegression(max_iter=10000, solver='newton-cg
 #############Logistic Regress with new############ #เป็นวิธีการที่นิยมใช้เพื่อจำแนกประเภทข้อมูลหรือสิ่งของบางอย่างออกเป็นสองกลุ่ม 
 logistic_regression_1_allset= Lo_test
 logistic_regression_1_saga= logistic_regression_saga
+
 logistic_regression_1_sag= logistic_regression_sag
+logistic_regression_1_sag.fit(X_train_1,Y_train_1)
+model_logis_1hr = 'model_logistic_1h.sav'
+pickle.dump(logistic_regression_1_sag, open(model_logis_1hr,'wb'))
+
+
 logistic_regression_1_lbfgs= logistic_regression_lbfgs
 logistic_regression_1_newton= logistic_regression_newton
 
 logistic_regression_3_saga = logistic_regression_saga
+
 logistic_regression_3_sag  = logistic_regression_sag
+logistic_regression_3_sag.fit(X_train_3,Y_train_3)
+model_logis_3hr = 'model_logistic_3h.sav'
+pickle.dump(logistic_regression_3_sag, open(model_logis_3hr,'wb'))
+
 logistic_regression_3_lbfgs= logistic_regression_lbfgs
 logistic_regression_3_newton= logistic_regression_newton
 # logistic_regression_3.fit(X_train_3,Y_train_3)
 # y_pred_3=logistic_regression_3.predict(X_test_3)
 
 logistic_regression_6_saga = logistic_regression_saga
+
 logistic_regression_6_sag = logistic_regression_sag
+logistic_regression_6_sag.fit(X_train_6,Y_train_6)
+model_logis_6hr = 'model_logistic_6h.sav'
+pickle.dump(logistic_regression_6_sag, open(model_logis_6hr,'wb'))
+
 logistic_regression_6_lbfgs = logistic_regression_lbfgs
 logistic_regression_6_newton = logistic_regression_newton
 # logistic_regression_6.fit(X_train_6,Y_train_6)
@@ -411,6 +490,10 @@ acc_knn_6_n10 = get_score(modelknn_n10,X_train_6,X_test_6,Y_train_6,Y_test_6) #u
 
 
 acc_logistic = get_score(logistic_regression,X_train_o,X_test_o,Y_train_o,Y_test_o)
+acc_logistic_saga = get_score(logistic_regression_saga,X_train_o,X_test_o,Y_train_o,Y_test_o)
+acc_logistic_sag = get_score(logistic_regression_sag,X_train_o,X_test_o,Y_train_o,Y_test_o)
+acc_logistic_lbfgs = get_score(logistic_regression_lbfgs,X_train_o,X_test_o,Y_train_o,Y_test_o)
+acc_logistic_newton = get_score(logistic_regression_newton,X_train_o,X_test_o,Y_train_o,Y_test_o)
 
 
 # acc_logistic_norm = get_score(logistic_regression_norm,X_train_norm,X_test_norm,Y_train_norm,Y_test_norm)
@@ -478,6 +561,10 @@ print('ค่า Accuracy with KNN old n=9 :',acc_knn_n9)
 print('ค่า Accuracy with KNN old n=10 :',acc_knn_n10)
 
 print('ค่า Accuracy with logistic regress :',acc_logistic)
+print('ค่า Accuracy with logistic regress saga :',acc_logistic_saga)
+print('ค่า Accuracy with logistic regress sag :',acc_logistic_sag)
+print('ค่า Accuracy with logistic regress lbfgs :',acc_logistic_lbfgs)
+print('ค่า Accuracy with logistic regress newton :',acc_logistic_newton)
 
 # print('')
 # print('--------------- norm data--------------')
