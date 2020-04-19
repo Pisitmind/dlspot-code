@@ -63,12 +63,57 @@ df_1hr_4 = pd.DataFrame(data_test_4, columns= ['Humidity','Vis',	'UVindex','Obje
                         'XbarCO2Analog(ppm)_1hr','SD_Humidity_1hr'	,'SD_Vis_1hr'	,'SD_UVindex_1hr', 'SD_Object(*C)_1hr',	'SD_co2analog_1hr'])
 
 
+df_3hr = pd.DataFrame(data_test, columns= ['Humidity',	'Vis',	'UVindex','Object(*C)','CO2Analog(ppm)',
+                        'CO2PWM(ppm)',	'isGood','XbarHumidity_3hr',	'XbarVis_3hr',	'XbarUVindex_3hr',	'XbarObject(*C)_3hr',
+                        'Xbar_co2analog_3hr', 'SD_Humidity_3hr',	'SD_Vis_3hr',	'SD_UVindex_3hr', 'SD_Object(*C)_3hr'	,'SD_CO2Analog(ppm)_3hr'])
+
+df_3hr_2 = pd.DataFrame(data_test_2, columns= ['Humidity',	'Vis',	'UVindex','Object(*C)','CO2Analog(ppm)',
+                        'CO2PWM(ppm)',	'isGood','XbarHumidity_3hr',	'XbarVis_3hr',	'XbarUVindex_3hr',	'XbarObject(*C)_3hr',
+                        'Xbar_co2analog_3hr', 'SD_Humidity_3hr',	'SD_Vis_3hr',	'SD_UVindex_3hr', 'SD_Object(*C)_3hr'	,'SD_CO2Analog(ppm)_3hr'])
+
+df_3hr_3 = pd.DataFrame(data_test_3, columns= ['Humidity',	'Vis',	'UVindex','Object(*C)','CO2Analog(ppm)',
+                        'CO2PWM(ppm)',	'isGood','XbarHumidity_3hr',	'XbarVis_3hr',	'XbarUVindex_3hr',	'XbarObject(*C)_3hr',
+                        'Xbar_co2analog_3hr', 'SD_Humidity_3hr',	'SD_Vis_3hr',	'SD_UVindex_3hr', 'SD_Object(*C)_3hr'	,'SD_CO2Analog(ppm)_3hr'])
+
+df_3hr_4 = pd.DataFrame(data_test_4, columns= ['Humidity',	'Vis',	'UVindex','Object(*C)','CO2Analog(ppm)',
+                        'CO2PWM(ppm)',	'isGood','XbarHumidity_3hr',	'XbarVis_3hr',	'XbarUVindex_3hr',	'XbarObject(*C)_3hr',
+                        'Xbar_co2analog_3hr', 'SD_Humidity_3hr',	'SD_Vis_3hr',	'SD_UVindex_3hr', 'SD_Object(*C)_3hr'	,'SD_CO2Analog(ppm)_3hr'])
+
+df_6hr = pd.DataFrame(data_test, columns= ['Humidity'	,'Object(*C)','CO2Analog(ppm)','CO2PWM(ppm)','isGood',
+                        'Xbar_Humidity_6hr'	,'Xbar_Vis_6hr'	,'Xbar_UVindex_6hr','Xbar_Object(*C)_6hr',	'Xbar_co2analog_6hr',
+                        'SD_Humidity_6hr',	'SD_Vis_6hr',	'SD_UVindex_6hr', 'SD_Object(*C)_6hr','SD_CO2Analog(ppm)_6hr'])
+
+df_6hr_2 = pd.DataFrame(data_test_2, columns= ['Humidity'	,'Object(*C)','CO2Analog(ppm)','CO2PWM(ppm)','isGood',
+                        'Xbar_Humidity_6hr'	,'Xbar_Vis_6hr'	,'Xbar_UVindex_6hr','Xbar_Object(*C)_6hr',	'Xbar_co2analog_6hr',
+                        'SD_Humidity_6hr',	'SD_Vis_6hr',	'SD_UVindex_6hr', 'SD_Object(*C)_6hr','SD_CO2Analog(ppm)_6hr'])
+
+df_6hr_3 = pd.DataFrame(data_test_3, columns= ['Humidity'	,'Object(*C)','CO2Analog(ppm)','CO2PWM(ppm)','isGood',
+                        'Xbar_Humidity_6hr'	,'Xbar_Vis_6hr'	,'Xbar_UVindex_6hr','Xbar_Object(*C)_6hr',	'Xbar_co2analog_6hr',
+                        'SD_Humidity_6hr',	'SD_Vis_6hr',	'SD_UVindex_6hr', 'SD_Object(*C)_6hr','SD_CO2Analog(ppm)_6hr'])
+
+df_6hr_4 = pd.DataFrame(data_test_4, columns= ['Humidity'	,'Object(*C)','CO2Analog(ppm)','CO2PWM(ppm)','isGood',
+                        'Xbar_Humidity_6hr'	,'Xbar_Vis_6hr'	,'Xbar_UVindex_6hr','Xbar_Object(*C)_6hr',	'Xbar_co2analog_6hr',
+                        'SD_Humidity_6hr',	'SD_Vis_6hr',	'SD_UVindex_6hr', 'SD_Object(*C)_6hr','SD_CO2Analog(ppm)_6hr'])
+
+
+
 # df =df.fillna(0)
 # df_2 =df_2.fillna(0)
 df_1hr =df_1hr.fillna(0)
 df_1hr_2 =df_1hr_2.fillna(0)
 df_1hr_3 =df_1hr_3.fillna(0)
 df_1hr_4 =df_1hr_4.fillna(0)
+
+df_3hr = df_3hr.fillna(0) #ดัก missing value ถ้าเจอ เติม 0
+df_3hr_2 = df_3hr_2.fillna(0) #ดัก missing value ถ้าเจอ เติม 0
+df_3hr_3 = df_3hr_3.fillna(0) #ดัก missing value ถ้าเจอ เติม 0
+df_3hr_4 = df_3hr_4.fillna(0) #ดัก missing value ถ้าเจอ เติม 0
+
+df_6hr = df_6hr.fillna(0) #ดัก missing value ถ้าเจอ เติม 0
+df_6hr_2 = df_6hr_2.fillna(0) #ดัก missing value ถ้าเจอ เติม 0
+df_6hr_3 = df_6hr_3.fillna(0) #ดัก missing value ถ้าเจอ เติม 0
+df_6hr_4 = df_6hr_4.fillna(0) #ดัก missing value ถ้าเจอ เติม 0
+
 
 # print(df.head())
 # print(df_2.head())
@@ -84,10 +129,31 @@ answer_1hr =df_1hr.isGood
 answer_1hr_2 =df_1hr_2.isGood
 answer_1hr_3 =df_1hr_3.isGood
 answer_1hr_4 =df_1hr_4.isGood
+
 X_test_1hr = df_1hr.drop('isGood', axis='columns')
 X_test_1hr_2 = df_1hr_2.drop('isGood', axis='columns')
 X_test_1hr_3 = df_1hr_3.drop('isGood', axis='columns')
 X_test_1hr_4 = df_1hr_4.drop('isGood', axis='columns')
+
+answer_3hr =df_3hr.isGood
+answer_3hr_2 =df_3hr_2.isGood
+answer_3hr_3 =df_3hr_3.isGood
+answer_3hr_4 =df_3hr_4.isGood
+
+X_test_3hr = df_3hr.drop('isGood', axis='columns')
+X_test_3hr_2 = df_3hr_2.drop('isGood', axis='columns')
+X_test_3hr_3 = df_3hr_3.drop('isGood', axis='columns')
+X_test_3hr_4 = df_3hr_4.drop('isGood', axis='columns')
+
+answer_6hr =df_6hr.isGood
+answer_6hr_2 =df_6hr_2.isGood
+answer_6hr_3 =df_6hr_3.isGood
+answer_6hr_4 =df_6hr_4.isGood
+
+X_test_6hr = df_6hr.drop('isGood', axis='columns')
+X_test_6hr_2 = df_6hr_2.drop('isGood', axis='columns')
+X_test_6hr_3 = df_6hr_3.drop('isGood', axis='columns')
+X_test_6hr_4 = df_6hr_4.drop('isGood', axis='columns')
 
 
 # Test_X=df.drop('isGood', axis='columns')  #old data
@@ -188,17 +254,134 @@ acc_test_logis_1hr_3 = accuracy_score(answer_1hr_3,predict_out_logis_1hr_3)
 
 # -------------------- set 4 -----------------------------#
 
-predict_out_gau_1hr_4 = loaded_model_gau_1hr.predict(X_test_1hr_3)
-acc_gau_rate_1hr_4 = confusion_matrix(answer_1hr_3, predict_out_gau_1hr_3)
-acc_test_gau_1hr_4 = accuracy_score(answer_1hr_3,predict_out_gau_1hr_3)
+predict_out_gau_1hr_4 = loaded_model_gau_1hr.predict(X_test_1hr_4)
+acc_gau_rate_1hr_4 = confusion_matrix(answer_1hr_3, predict_out_gau_1hr_4)
+acc_test_gau_1hr_4 = accuracy_score(answer_1hr_3,predict_out_gau_1hr_4)
 
-predict_out_Knn_1hr_4 = loaded_model_Knn_1hr.predict(X_test_1hr_3)
-acc_Knn_rate_1hr_4 = confusion_matrix(answer_1hr_3, predict_out_Knn_1hr_3)
-acc_test_Knn_1hr_4 = accuracy_score(answer_1hr_3,predict_out_Knn_1hr_3)
+predict_out_Knn_1hr_4 = loaded_model_Knn_1hr.predict(X_test_1hr_4)
+acc_Knn_rate_1hr_4 = confusion_matrix(answer_1hr_4, predict_out_Knn_1hr_4)
+acc_test_Knn_1hr_4 = accuracy_score(answer_1hr_4,predict_out_Knn_1hr_4)
 
 predict_out_logis_1hr_4 = loaded_model_logistic_1hr.predict(X_test_1hr_4)
 acc_logis_rate_1hr_4 = confusion_matrix(answer_1hr_4, predict_out_logis_1hr_4)
 acc_test_logis_1hr_4 = accuracy_score(answer_1hr_4,predict_out_logis_1hr_4)
+
+
+
+############use model to predict 3hr data ########################
+
+predict_out_gau_3hr = loaded_model_gau_3hr.predict(X_test_3hr)
+acc_gau_rate_3hr = confusion_matrix(answer_3hr, predict_out_gau_3hr)
+acc_test_gau_3hr = accuracy_score(answer_3hr,predict_out_gau_3hr)
+
+predict_out_Knn_3hr = loaded_model_Knn_3hr.predict(X_test_3hr)
+acc_Knn_rate_3hr = confusion_matrix(answer_3hr, predict_out_Knn_3hr)
+acc_test_Knn_3hr = accuracy_score(answer_3hr,predict_out_Knn_3hr)
+
+predict_out_logis_3hr = loaded_model_logistic_3hr.predict(X_test_3hr)
+acc_logis_rate_3hr = confusion_matrix(answer_3hr, predict_out_logis_3hr)
+acc_test_logis_3hr = accuracy_score(answer_3hr,predict_out_logis_3hr)
+
+# ----------------------- set 2-------------------------#
+
+predict_out_gau_3hr_2 = loaded_model_gau_3hr.predict(X_test_3hr_2)
+acc_gau_rate_3hr_2 = confusion_matrix(answer_3hr_2, predict_out_gau_3hr_2)
+acc_test_gau_3hr_2 = accuracy_score(answer_3hr_2,predict_out_gau_3hr_2)
+
+predict_out_Knn_3hr_2 = loaded_model_Knn_3hr.predict(X_test_3hr_2)
+acc_Knn_rate_3hr_2 = confusion_matrix(answer_3hr_2, predict_out_Knn_3hr_2)
+acc_test_Knn_3hr_2 = accuracy_score(answer_3hr_2,predict_out_Knn_3hr_2)
+
+predict_out_logis_3hr_2 = loaded_model_logistic_3hr.predict(X_test_3hr_2)
+acc_logis_rate_3hr_2 = confusion_matrix(answer_3hr_2, predict_out_logis_3hr_2)
+acc_test_logis_3hr_2 = accuracy_score(answer_3hr_2,predict_out_logis_3hr_2)
+
+# -------------------- set 3 -----------------------------#
+
+predict_out_gau_3hr_3 = loaded_model_gau_3hr.predict(X_test_3hr_3)
+acc_gau_rate_3hr_3 = confusion_matrix(answer_3hr_3, predict_out_gau_3hr_3)
+acc_test_gau_3hr_3 = accuracy_score(answer_3hr_3,predict_out_gau_3hr_3)
+
+predict_out_Knn_3hr_3 = loaded_model_Knn_3hr.predict(X_test_3hr_3)
+acc_Knn_rate_3hr_3 = confusion_matrix(answer_3hr_3, predict_out_Knn_3hr_3)
+acc_test_Knn_3hr_3 = accuracy_score(answer_3hr_3,predict_out_Knn_3hr_3)
+
+predict_out_logis_3hr_3 = loaded_model_logistic_3hr.predict(X_test_3hr_3)
+acc_logis_rate_3hr_3 = confusion_matrix(answer_3hr_3, predict_out_logis_3hr_3)
+acc_test_logis_3hr_3 = accuracy_score(answer_3hr_3,predict_out_logis_3hr_3)
+
+# -------------------- set 4 -----------------------------#
+
+predict_out_gau_3hr_4 = loaded_model_gau_3hr.predict(X_test_3hr_4)
+acc_gau_rate_3hr_4 = confusion_matrix(answer_3hr_4, predict_out_gau_3hr_4)
+acc_test_gau_3hr_4 = accuracy_score(answer_3hr_4,predict_out_gau_3hr_4)
+
+predict_out_Knn_3hr_4 = loaded_model_Knn_3hr.predict(X_test_3hr_4)
+acc_Knn_rate_3hr_4 = confusion_matrix(answer_3hr_4, predict_out_Knn_3hr_4)
+acc_test_Knn_3hr_4 = accuracy_score(answer_3hr_4,predict_out_Knn_3hr_4)
+
+predict_out_logis_3hr_4 = loaded_model_logistic_3hr.predict(X_test_3hr_4)
+acc_logis_rate_3hr_4 = confusion_matrix(answer_3hr_4, predict_out_logis_3hr_4)
+acc_test_logis_3hr_4 = accuracy_score(answer_3hr_4,predict_out_logis_3hr_4)
+
+
+
+
+############use model to predict 6hr data ########################
+
+predict_out_gau_6hr = loaded_model_gau_6hr.predict(X_test_6hr)
+acc_gau_rate_6hr = confusion_matrix(answer_6hr, predict_out_gau_6hr)
+acc_test_gau_6hr = accuracy_score(answer_6hr,predict_out_gau_6hr)
+
+predict_out_Knn_6hr = loaded_model_Knn_6hr.predict(X_test_6hr)
+acc_Knn_rate_6hr = confusion_matrix(answer_6hr, predict_out_Knn_6hr)
+acc_test_Knn_6hr = accuracy_score(answer_6hr,predict_out_Knn_6hr)
+
+predict_out_logis_6hr = loaded_model_logistic_6hr.predict(X_test_6hr)
+acc_logis_rate_6hr = confusion_matrix(answer_6hr, predict_out_logis_6hr)
+acc_test_logis_6hr = accuracy_score(answer_6hr,predict_out_logis_6hr)
+
+# ----------------------- set 2-------------------------#
+
+predict_out_gau_6hr_2 = loaded_model_gau_6hr.predict(X_test_6hr_2)
+acc_gau_rate_6hr_2 = confusion_matrix(answer_6hr_2, predict_out_gau_6hr_2)
+acc_test_gau_6hr_2 = accuracy_score(answer_6hr_2,predict_out_gau_6hr_2)
+
+predict_out_Knn_6hr_2 = loaded_model_Knn_6hr.predict(X_test_6hr_2)
+acc_Knn_rate_6hr_2 = confusion_matrix(answer_6hr_2, predict_out_Knn_6hr_2)
+acc_test_Knn_6hr_2 = accuracy_score(answer_6hr_2,predict_out_Knn_6hr_2)
+
+predict_out_logis_6hr_2 = loaded_model_logistic_6hr.predict(X_test_6hr_2)
+acc_logis_rate_6hr_2 = confusion_matrix(answer_6hr_2, predict_out_logis_6hr_2)
+acc_test_logis_6hr_2 = accuracy_score(answer_6hr_2,predict_out_logis_6hr_2)
+
+# -------------------- set 3 -----------------------------#
+
+predict_out_gau_6hr_3 = loaded_model_gau_6hr.predict(X_test_6hr_3)
+acc_gau_rate_6hr_3 = confusion_matrix(answer_6hr_3, predict_out_gau_6hr_3)
+acc_test_gau_6hr_3 = accuracy_score(answer_6hr_3,predict_out_gau_6hr_3)
+
+predict_out_Knn_6hr_3 = loaded_model_Knn_6hr.predict(X_test_6hr_3)
+acc_Knn_rate_6hr_3 = confusion_matrix(answer_6hr_3, predict_out_Knn_6hr_3)
+acc_test_Knn_6hr_3 = accuracy_score(answer_6hr_3,predict_out_Knn_6hr_3)
+
+predict_out_logis_6hr_3 = loaded_model_logistic_6hr.predict(X_test_6hr_3)
+acc_logis_rate_6hr_3 = confusion_matrix(answer_6hr_3, predict_out_logis_6hr_3)
+acc_test_logis_6hr_3 = accuracy_score(answer_6hr_3,predict_out_logis_6hr_3)
+
+# -------------------- set 4 -----------------------------#
+
+predict_out_gau_6hr_4 = loaded_model_gau_6hr.predict(X_test_6hr_4)
+acc_gau_rate_6hr_4 = confusion_matrix(answer_6hr_4, predict_out_gau_6hr_4)
+acc_test_gau_6hr_4 = accuracy_score(answer_6hr_4,predict_out_gau_6hr_4)
+
+predict_out_Knn_6hr_4 = loaded_model_Knn_6hr.predict(X_test_6hr_4)
+acc_Knn_rate_6hr_4 = confusion_matrix(answer_6hr_4, predict_out_Knn_6hr_4)
+acc_test_Knn_6hr_4 = accuracy_score(answer_6hr_4,predict_out_Knn_6hr_4)
+
+predict_out_logis_6hr_4 = loaded_model_logistic_6hr.predict(X_test_6hr_4)
+acc_logis_rate_6hr_4 = confusion_matrix(answer_6hr_4, predict_out_logis_6hr_4)
+acc_test_logis_6hr_4 = accuracy_score(answer_6hr_4,predict_out_logis_6hr_4)
 
 
 
@@ -368,7 +551,7 @@ print('------------------------------')
 print('')
 
 print('#####################################-----result 1 hr set 3----#####################################')
-###### 1hr set 2###############
+###### 1hr set 3###############
 print(predict_out_gau_1hr_3)
 print('Confusion Matrix : ',"\n", acc_gau_rate_1hr_3)
 print('ค่าความถูกต้องของ model  GaussianNB 1hr : ',acc_test_gau_1hr_3)
@@ -386,7 +569,7 @@ print('------------------------------')
 print('')
 
 print('#####################################-----result 1 hr set 4----#####################################')
-###### 1hr set 2###############
+###### 1hr set 4###############
 print(predict_out_gau_1hr_4)
 print('Confusion Matrix : ',"\n", acc_gau_rate_1hr_4)
 print('ค่าความถูกต้องของ model  GaussianNB 1hr : ',acc_test_gau_1hr_4)
@@ -400,6 +583,155 @@ print('')
 print(predict_out_logis_1hr_4)
 print('Confusion Matrix : ',"\n", acc_logis_rate_1hr_4)
 print('ค่าความถูกต้องของ model  logistic 1hr : ',acc_test_logis_1hr_4)
+print('------------------------------')
+print('')
+
+#####################
+
+print('#####################################-----result 3 hr set 1----#####################################')
+
+###### 1hr set 1###############
+print(predict_out_gau_3hr)
+print('Confusion Matrix : ',"\n", acc_gau_rate_3hr)
+print('ค่าความถูกต้องของ model  GaussianNB 3hr : ',acc_test_gau_3hr)
+print('------------------------------')
+print('')
+print(predict_out_Knn_3hr)
+print('Confusion Matrix : ',"\n", acc_Knn_rate_3hr)
+print('ค่าความถูกต้องของ model  Knn 3hr : ',acc_test_Knn_3hr)
+print('------------------------------')
+print('')
+print(predict_out_logis_3hr)
+print('Confusion Matrix : ',"\n", acc_logis_rate_3hr)
+print('ค่าความถูกต้องของ model  logistic 3hr : ',acc_test_logis_3hr)
+print('------------------------------')
+print('')
+
+print('#####################################-----result 3 hr set 2----#####################################')
+###### 3hr set 2###############
+print(predict_out_gau_3hr_2)
+print('Confusion Matrix : ',"\n", acc_gau_rate_3hr_2)
+print('ค่าความถูกต้องของ model  GaussianNB 3hr : ',acc_test_gau_3hr_2)
+print('------------------------------')
+print('')
+print(predict_out_Knn_3hr_2)
+print('Confusion Matrix : ',"\n", acc_Knn_rate_3hr_2)
+print('ค่าความถูกต้องของ model  Knn 3hr : ',acc_test_Knn_3hr_2)
+print('------------------------------')
+print('')
+print(predict_out_logis_3hr_2)
+print('Confusion Matrix : ',"\n", acc_logis_rate_3hr_2)
+print('ค่าความถูกต้องของ model  logistic 3hr : ',acc_test_logis_3hr_2)
+print('------------------------------')
+print('')
+
+print('#####################################-----result 3 hr set 3----#####################################')
+
+print(predict_out_gau_3hr_3)
+print('Confusion Matrix : ',"\n", acc_gau_rate_3hr_3)
+print('ค่าความถูกต้องของ model  GaussianNB 3hr : ',acc_test_gau_3hr_3)
+print('------------------------------')
+print('')
+print(predict_out_Knn_3hr_3)
+print('Confusion Matrix : ',"\n", acc_Knn_rate_3hr_3)
+print('ค่าความถูกต้องของ model  Knn 3hr : ',acc_test_Knn_3hr_3)
+print('------------------------------')
+print('')
+print(predict_out_logis_3hr_3)
+print('Confusion Matrix : ',"\n", acc_logis_rate_3hr_3)
+print('ค่าความถูกต้องของ model  logistic 3hr : ',acc_test_logis_3hr_3)
+print('------------------------------')
+print('')
+
+print('#####################################-----result 3 hr set 4----#####################################')
+
+print(predict_out_gau_3hr_4)
+print('Confusion Matrix : ',"\n", acc_gau_rate_3hr_4)
+print('ค่าความถูกต้องของ model  GaussianNB 3hr : ',acc_test_gau_3hr_4)
+print('------------------------------')
+print('')
+print(predict_out_Knn_3hr_4)
+print('Confusion Matrix : ',"\n", acc_Knn_rate_3hr_4)
+print('ค่าความถูกต้องของ model  Knn 3hr : ',acc_test_Knn_3hr_4)
+print('------------------------------')
+print('')
+print(predict_out_logis_3hr_4)
+print('Confusion Matrix : ',"\n", acc_logis_rate_3hr_4)
+print('ค่าความถูกต้องของ model  logistic 3hr : ',acc_test_logis_3hr_4)
+print('------------------------------')
+print('')
+
+
+print('#####################################-----result 6 hr set 1----#####################################')
+
+###### 6hr set 1###############
+print(predict_out_gau_6hr)
+print('Confusion Matrix : ',"\n", acc_gau_rate_6hr)
+print('ค่าความถูกต้องของ model  GaussianNB 6hr : ',acc_test_gau_6hr)
+print('------------------------------')
+print('')
+print(predict_out_Knn_6hr)
+print('Confusion Matrix : ',"\n", acc_Knn_rate_6hr)
+print('ค่าความถูกต้องของ model  Knn 6hr : ',acc_test_Knn_6hr)
+print('------------------------------')
+print('')
+print(predict_out_logis_6hr)
+print('Confusion Matrix : ',"\n", acc_logis_rate_6hr)
+print('ค่าความถูกต้องของ model  logistic 6hr : ',acc_test_logis_6hr)
+print('------------------------------')
+print('')
+
+print('#####################################-----result 6 hr set 2----#####################################')
+###### 3hr set 2###############
+print(predict_out_gau_6hr_2)
+print('Confusion Matrix : ',"\n", acc_gau_rate_6hr_2)
+print('ค่าความถูกต้องของ model  GaussianNB 6hr : ',acc_test_gau_6hr_2)
+print('------------------------------')
+print('')
+print(predict_out_Knn_6hr_2)
+print('Confusion Matrix : ',"\n", acc_Knn_rate_6hr_2)
+print('ค่าความถูกต้องของ model  Knn 6hr : ',acc_test_Knn_6hr_2)
+print('------------------------------')
+print('')
+print(predict_out_logis_6hr_2)
+print('Confusion Matrix : ',"\n", acc_logis_rate_6hr_2)
+print('ค่าความถูกต้องของ model  logistic 6hr : ',acc_test_logis_6hr_2)
+print('------------------------------')
+print('')
+
+print('#####################################-----result 6 hr set 3----#####################################')
+
+print(predict_out_gau_6hr_3)
+print('Confusion Matrix : ',"\n", acc_gau_rate_6hr_3)
+print('ค่าความถูกต้องของ model  GaussianNB 6hr : ',acc_test_gau_6hr_3)
+print('------------------------------')
+print('')
+print(predict_out_Knn_6hr_3)
+print('Confusion Matrix : ',"\n", acc_Knn_rate_6hr_3)
+print('ค่าความถูกต้องของ model  Knn 6hr : ',acc_test_Knn_6hr_3)
+print('------------------------------')
+print('')
+print(predict_out_logis_6hr_3)
+print('Confusion Matrix : ',"\n", acc_logis_rate_6hr_3)
+print('ค่าความถูกต้องของ model  logistic 6hr : ',acc_test_logis_6hr_3)
+print('------------------------------')
+print('')
+
+print('#####################################-----result 6 hr set 4----#####################################')
+
+print(predict_out_gau_6hr_4)
+print('Confusion Matrix : ',"\n", acc_gau_rate_6hr_4)
+print('ค่าความถูกต้องของ model  GaussianNB 6hr : ',acc_test_gau_6hr_4)
+print('------------------------------')
+print('')
+print(predict_out_Knn_6hr_4)
+print('Confusion Matrix : ',"\n", acc_Knn_rate_6hr_4)
+print('ค่าความถูกต้องของ model  Knn 6hr : ',acc_test_Knn_6hr_4)
+print('------------------------------')
+print('')
+print(predict_out_logis_6hr_4)
+print('Confusion Matrix : ',"\n", acc_logis_rate_6hr_4)
+print('ค่าความถูกต้องของ model  logistic 6hr : ',acc_test_logis_6hr_4)
 print('------------------------------')
 print('')
 
